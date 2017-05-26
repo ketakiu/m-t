@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>BEProject</display-name>
+  <filter>
+    <filter-name>LogFilter</filter-name>
+    <filter-class>bmc.RequestFilter</filter-class>
+    <init-param>
+      <param-name>MSGBRKRADDR</param-name>
+      <param-value>broker:(tcp://localhost:</param-value>
+    </init-param>
+    <init-param>
+      <param-name>MSGBRKRPORT</param-name>
+      <param-value>6662</param-value>
+    </init-param>
+    <init-param>
+      <param-name>MSGQADDR</param-name>
+      <param-value>tcp://localhost:</param-value>
+    </init-param>
+    <init-param>
+      <param-name>MSGQPORT</param-name>
+      <param-value>61616</param-value>
+    </init-param>
+    <init-param>
+      <param-name>MsgTopic</param-name>
+      <param-value>BMCRequestQueue</param-value>
+    </init-param>
+    <init-param>
+      <param-name>JDBC_Driver</param-name>
+      <param-value>com.mysql.jdbc.Driver</param-value>
+    </init-param>
+    <init-param>
+      <param-name>DB_Url</param-name>
+      <param-value>jdbc:mysql://localhost/bmc</param-value>
+    </init-param>
+    <init-param>
+      <param-name>User_Name</param-name>
+      <param-value>root</param-value>
+    </init-param>
+    <init-param>
+      <param-name>User_Password</param-name>
+      <param-value>password</param-value>
+    </init-param>
+    <init-param>
+      <param-name>DB_Name</param-name>
+      <param-value>BMC</param-value>
+    </init-param>
+    <init-param>
+      <param-name>DB_Table</param-name>
+      <param-value>try</param-value>
+    </init-param>
+    <init-param>
+      <param-name>RequestCountLimit</param-name>
+      <param-value>80</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>LogFilter</filter-name>
+    <url-pattern>/Hello/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>Hello</servlet-name>
+    <servlet-class>bmc.RequestServer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Hello</servlet-name>
+    <url-pattern>/Hello/*</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>getdata</servlet-name>
+    <servlet-class>Data</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>getdata</servlet-name>
+    <url-pattern>/Data/*</url-pattern>
+</servlet-mapping>
+</web-app>
